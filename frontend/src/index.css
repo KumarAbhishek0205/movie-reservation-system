@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a0a;
+}
+
+/* Horizontal carousels with no visible scrollbar, Netflix-row style */
+.row-scroll {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 0.5rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.row-scroll::-webkit-scrollbar {
+  display: none;
+}
+.row-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Ticket-stub perforation: a dashed divider with two notch circles,
+   used on reservation cards to look like a real ticket stub. */
+.ticket-perforation {
+  position: relative;
+  border-left: 2px dashed #2a2a2a;
+}
+.ticket-perforation::before,
+.ticket-perforation::after {
+  content: '';
+  position: absolute;
+  left: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  border: 2px solid #2a2a2a;
+}
+.ticket-perforation::before {
+  top: -10px;
+}
+.ticket-perforation::after {
+  bottom: -10px;
+}
+
+/* Visible keyboard focus ring throughout, regardless of element */
+:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
